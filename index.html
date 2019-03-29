@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="liveSearchApp" ng-controller="searchController">
+<head>
+    <meta charset="UTF-8">
+    <title ng-bind="title">Fallout 76 -- Resource Map</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link href="css/style.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="logo">
+        <img src="img/fallout-76-logo.png" alt="Fallout 76 logo"/>
+    </div>
+    <div class="header">
+        <h1 class="really-big-title">Workshop Resource List</h1>
+        <hr/>
+        <h1>How to use <span class="label label-default instruction-badge" ng-click="instructionsVisible = !instructionsVisible">(show/hide instructions)</span></h1>
+        <div class="instructions" ng-show="instructionsVisible">
+            <p>Simply start typing the name of the resource. It can be part of the name.</p>
+            <p>Example: If you want workshops that have Fusion cores, you can search for "fusion core", "fusion" or just "core"</p>
+            <br/>
+            <p>To search for multiple resources, separate them with a comma (,).</p>
+            <p>Example: If you want a workshop that has acid and concrete, just type: acid, concrete </p>
+        </div>
+    </div>
+    <div>
+        <p>If you find any bugs, <a href="https://twitter.com/brenissimo" target="_blank">tweet me</a> and i`ll fix it as soon as possible!</p>
+    </div>
+    <hr/>
+
+    <div class="searchBox">
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon3">Desired Resource</span>
+            <input ng-model="resFilterTxt" type="text" class="form-control" id="basic-url"
+                   aria-describedby="basic-addon3", placeholder="fusion core, lead">
+        </div>
+    </div>
+    <div>
+        <ul>
+            <li><b>Packaged Food</b>: Blamco Brand Mac and Cheese, Fancy Lads Snack Cakes, Preserved Instamash, Sailsbury Steak and Sugar Bombs</li>
+            <li><b>Ore</b>: Steel, Gold, Aluminum, Black Titanium, Crystal, Nuclear Waste, Copper and Silver</li>
+            <li><b>Ammo</b>: 10mm, .308, .38, .44, .45, .50, 5.56mm, 5mm, Fusion Cell, Gamma Round, Plasma Cartridge and Shotgun Shell</li>
+        </ul>
+    </div>
+    <div>
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>Location</th>
+                <th>Map Area</th>
+                <th>Level Range</th>
+                <th>Food</th>
+                <th>Water</th>
+                <th>Crystal</th>
+                <th>Fertilizer</th>
+                <th>Concrete</th>
+                <th>Junk</th>
+                <th>Oil</th>
+                <th>Wood</th>
+                <th>Nuclear Waste</th>
+                <th>Acid</th>
+                <th>Lead</th>
+                <th>Steel</th>
+                <th>Black Titanium</th>
+                <th>Aluminum</th>
+                <th>Silver</th>
+                <th>Gold</th>
+                <th>Copper</th>
+                <th>Packaged Food</th>
+                <th>Fusion Core</th>
+                <th>Ore</th>
+                <th>Ammo</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="res in resources | filter:filterRes">
+                <th><a href="{{ res.url }}" target="_blank">{{ res.location }}</a></th>
+                <th>{{ res.mapArea }}</th>
+                <th class="centerLabel">{{ res.levelRange }}</th>
+                <td>{{ res.resources.food }}</td>
+                <td>{{ res.resources.water }}</td>
+                <td>{{ res.resources.crystal }}</td>
+                <td>{{ res.resources.fertilizer }}</td>
+                <td>{{ res.resources.concrete }}</td>
+                <td>{{ res.resources.junk }}</td>
+                <td>{{ res.resources.oil }}</td>
+                <td>{{ res.resources.wood }}</td>
+                <td>{{ res.resources.nuclearWaste }}</td>
+                <td>{{ res.resources.acid }}</td>
+                <td>{{ res.resources.lead }}</td>
+                <td>{{ res.resources.steel }}</td>
+                <td>{{ res.resources.blackTitanium }}</td>
+                <td>{{ res.resources.aluminum }}</td>
+                <td>{{ res.resources.silver }}</td>
+                <td>{{ res.resources.gold }}</td>
+                <td>{{ res.resources.copper }}</td>
+                <td>{{ res.resources.packagedFood }}</td>
+                <td>{{ res.resources.fusionCore }}</td>
+                <td>{{ res.resources.ore }}</td>
+                <td>{{ res.resources.ammo }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <h6><b>Known Issues</b>:</h6>
+        <ol>
+            <li>If you search for <b>ORE</b>, power plants that produce FUSION C<b>ORE</b>S will appear, because the word C<b>ORE</b> contains <b>ORE</b>. No biggie. I'll fix it later... maybe.</li>
+        </ol>
+        <h6><b>Legal notices</b>:</h6>
+        <ol>
+            <li>Fallout, it's logo and everything else belongs to Bethesda. I just indexed the information provided <span class="italic">in-game</span> and made it public.</li>
+            <li>I`m also not affiliated with Fallout 76 Interactive Map.</li>
+        </ol>
+        <p>My other project: <a hreg="https://raccoon.ninja" target="_blank">Raccoon Ninja - Dev site</a> (mostly in brazilian portuguese)</p>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"></script>
+<script src="js/app.js"></script>
+</body>
+
+</html>

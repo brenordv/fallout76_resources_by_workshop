@@ -1,0 +1,43 @@
+body {
+    font-family: 'Roboto';
+    font-size: 12px;
+}
+
+.really-big-title {
+    font-size: 65px;
+}
+
+thead tr th {
+    text-align: center;
+}
+
+tbody tr td {
+    text-align: center;
+}
+
+.searchBox {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.centerLabel {
+    text-align: center;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #B2FF8B;
+}
+
+.italic {
+    font-style: italic;
+}
+
+span.instruction-badge {
+    font-size: 12px;
+    vertical-align: top;
+    padding: 6px;
+}
+
+span.instruction-badge:hover {
+    cursor: pointer;
+}
