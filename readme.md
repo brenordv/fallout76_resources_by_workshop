@@ -5,4 +5,4 @@ I think it's all very self explanatory and easy to use...
 
 At least that's what i was hoping for.
 
-Open index.html and you're all set. ;)
+Live link: https://brenordv.github.io/fo76_workshops/
